@@ -2,7 +2,7 @@
 * Function which correctly prints the parameter data type
 */
 function toType(obj) {
-  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 }
 
 /*
@@ -14,38 +14,45 @@ function toType(obj) {
 */
 function pastLessons(car1, car2){
 	//Print the parameters being passed through
-
+  console.log('car1 + car2',car1 + car2);
 	//Create an array named "cars" and set it's values to the passed parameters
-
+  var cars = [car1, car2];
 	//Return the array values as a concatenated string
-	return 
+	return 'He drives a '+ car1 + ' but my ' + car2 + ' goes boom.';
 }
 console.log("\n***Past Lessons***\n");
-console.log(pastLessons("Toyota", "Jeep Wrangler"));
+console.log(pastLessons("Toyota ", "Jeep Wrangler"));
 console.log("\n***End of Past Lessons***\n");
 
 
 /*
 * Demonstrates knowledge of 2-D arrays by accessing the values inside a
 * nested array
-* 
+*
 * Return 	The values in the nested array as a concatenated string
 */
 
 function twoDArrays(nestedArray){
 	//Print the parameter
+  console.log('nestedArray',nestedArray);
 
 	//Print the first nested array
+  console.log('nestedArray[3]',nestedArray[3]);
 
-	//Print the second item in the nested array
+  //Print the second item in the nested array
+  console.log('nestedArray[3][1]',nestedArray[3][1]);
 
 	//Can you print the third item in the *bonus* array?
+  console.log('nestedArray[3][2]',nestedArray[3][2]);
 
 	//Create a variable called "nestedArrayString" that stores the values in the nested array as a concatenated string and use this variable as the return value of this function
+  var nestedArrayString = 'Look at these things ' + nestedArray[3][0] + nestedArray[3][1] + nestedArray[3][2];
 
-	//Create a variable called "nestedArrayAddedUp" that adds up the values in the nested array and print the contents of this variable
+  //Create a variable called "nestedArrayAddedUp" that adds up the values in the nested array and print the contents of this variable
+  var nestedArrayAddedUp = nestedArray[3][0] + nestedArray[3][1] + nestedArray[3][2];
+  console.log('nestedArrayAddedUp',nestedArrayAddedUp);
 
-	return;
+	return nestedArrayString;
 }
 
 console.log("2-D Arrays\n");
@@ -57,13 +64,13 @@ console.log(twoDArrays([0, 1, 2, [3, 4, 5, [6, 7, 8]]]));
 
 console.log("\n***End***\n");
 
-/* 
+/*
 * Create an object named "myCar"
 * and set it's key:value pairs given the keys: type, model, and color
 */
 var myCar = {
-	type: "Toyota", 
-	model: "Corolla", 
+	type: "Toyota",
+	model: "Corolla",
 	color: "silver"
 };
 
@@ -78,13 +85,21 @@ function objectsAndProperties(car){
 	var properties = "";
 
 	//Print the parameter being passed through
-
+  console.log('car',car);
 	//Print the parameters length
+  console.log('car.length',Object.keys(car).length);
 
 	//Iterate through the keys in the array and change their value
+  for (var p in car){
+    keys += p + " ";
+    properties += car[p] + " ";
+    if (p === 'type'){
+      car[p] = 'Honda';
+    }
+  }
 
 	//Return the paramter and it's key:value pairs as a string concatenation
-	return;
+	return 'I used to drive a ' + car.color + ' ' + car.type + ' ' + car.model;
 }
 
 console.log("Objects and their Properties\n");
@@ -95,34 +110,44 @@ console.log("\n***End***\n");
 
 /*
 * Demonstrates the object methods: keys(), values(), entries()
-* 
+*
 * Parameters 	car (object)
 * Return 		The objects values as a concatenated string
 */
 function objectMethods(car){
 	//Print the parameter being passed through
-
+  console.log('car',car);
 	//Print the data type of the passed parameter
-
+  console.log('type of car',typeof car);
 	//Print the objects keys and set this value to a variable named "paramKeys";
-
+  var paramKeys = Object.keys(car);
+  console.log('Object.keys(car)', paramKeys);
 	//Print the data type of "paramKeys"
-
+  console.log('typeof paramKeys',typeof paramKeys);
 	//Use the method "toType" to print the "correct" data type of "paramKeys"
+  toType(paramKeys);
+  console.log('toType(paramKeys)',toType(paramKeys));
+	/*
+	* Print the objects values and set this value to a variable named "paramValues"
+	* Note: This is an experimental technology and is not
+	* compatible in all browsers
+	*/
+  var paramValues = paramKeys.map(function(key) {
+    console.log('car[key]',car[key]);
+    return car[key];
+  });
+
+  console.log('paramValues',paramValues);
 
 	/*
 	* Print the objects values and set this value to a variable named "paramValues"
-	* Note: This is an experimental technology and is not 
+	* Note: This is an experimental technology and is not
 	* compatible in all browsers
 	*/
+  var keyValuePairs = Object.entries(car);
+  console.log('keyValuePairs',keyValuePairs);
 
-	/*
-	* Print the objects values and set this value to a variable named "paramValues"
-	* Note: This is an experimental technology and is not 
-	* compatible in all browsers
-	*/
-
-	return;
+	return 'I had a ' + paramValues[2] + ' ' + paramValues[0] + ' ' + paramValues[1];
 }
 
 
